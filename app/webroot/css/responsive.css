@@ -1,0 +1,21 @@
+@media screen and (max-width:420px) {
+    header {
+        padding: 25px 0 !important;
+    }
+    .login-form {
+        padding: 30px 0 !important;
+    }
+	
+	
+	
+	
+	.dropdown-menu {
+  left: 100px !important;
+}
+.datepicker::before {
+  left: 90px !important;
+}
+.datepicker::after {
+  left: 90px !important;
+}
+}
