@@ -23,7 +23,7 @@ class UsersController extends AppController {
         parent::beforeFilter();
 
         // For CakePHP 2+
-        $this->Auth->allow('login','logout','signup');
+        $this->Auth->allow('login', 'logout', 'signup');
     }
 
     public function login() {
@@ -98,6 +98,35 @@ class UsersController extends AppController {
     }
 
     public function profile() {
+        if ($this->request->is('post')) {
+            if (!isset($this->request->data['UserDetail']['is_sport_level_public'])) {
+                $this->request->data['UserDetail']['is_sport_level_public'] = 0;
+            }
+            if (!isset($this->request->data['UserDetail']['is_rating_public'])) {
+                $this->request->data['UserDetail']['is_rating_public'] = 0;
+            }
+            if (!isset($this->request->data['UserDetail']['is_rank_public'])) {
+                $this->request->data['UserDetail']['is_rank_public'] = 0;
+            }
+            if (!isset($this->request->data['UserDetail']['is_badge_public'])) {
+                $this->request->data['UserDetail']['is_badge_public'] = 0;
+            }
+            if (!isset($this->request->data['UserDetail']['is_beaconplay'])) {
+                $this->request->data['UserDetail']['is_beaconplay'] = 0;
+            }
+            if (!isset($this->request->data['UserDetail']['is_challangeplay'])) {
+                $this->request->data['UserDetail']['is_challangeplay'] = 0;
+            }
+            $this->User->UserDetail->id = $this->Session->read("Auth.User")['UserDetail']['id'];
+            if ($this->User->UserDetail->save($this->request->data)) {
+                $response['status'] = true;
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'Can not save';
+            }
+            echo json_encode($response);
+            die;
+        }
         $this->User->UserDetail->recursive = 2;
         $userDetails = $this->User->UserDetail->findByUserId($this->Session->read("Auth.User")['User']['id']);
         //pr($userDetails);die;

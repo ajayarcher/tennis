@@ -1,7 +1,7 @@
 <div class="wrapper">
     <header>
         <?php echo $this->element('leftsidebar'); ?>
-        
+
         <span class="togg-btn" onclick="openNav()"><img src="<?php echo Configure::read('App.baseUrl'); ?>/images/toggle.png"></span>
 
 
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                     <a href="javascript:" class="pro-set-img">
-                        <img src="<?php echo $userDetails['UserDetail']['profile_picture']==''?Configure::read('App.baseUrl').'/images/profile.png':Configure::read('App.baseUrl').'/uploads/'.$userDetails['UserDetail']['profile_picture']; ?>" width="" height="" alt="Logo"></a>
+                        <img src="<?php echo $userDetails['UserDetail']['profile_picture'] == '' ? Configure::read('App.baseUrl') . '/images/profile.png' : Configure::read('App.baseUrl') . '/uploads/' . $userDetails['UserDetail']['profile_picture']; ?>" width="" height="" alt="Logo"></a>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="row">
 
             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <h3><?php echo $userDetails['UserDetail']['first_name']." ".$userDetails['UserDetail']['surname']; ?></h3>
+                <h3><?php echo $userDetails['UserDetail']['first_name'] . " " . $userDetails['UserDetail']['surname']; ?></h3>
             </div>
 
         </div>
@@ -28,7 +28,7 @@
     </div>
 
 
-
+    <?php echo $this->Form->create('UserDetail'); ?>
     <div class="profile-dis">
         <form>
             <div class="form-group hideOverflow">
@@ -57,7 +57,7 @@
                 <div class="switch-button1">
                     <h5>Publicly Viewable:</h5>
                     <div class="switch">
-                        <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" <?php echo $userDetails['UserDetail']['is_sport_level_public']==1?"checked":"";  ?>>
+                        <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" value="1" name="data[UserDetail][is_sport_level_public]" type="checkbox" <?php echo $userDetails['UserDetail']['is_sport_level_public'] == 1 ? "checked" : ""; ?>>
                         <label for="cmn-toggle-4"></label>
                     </div>
                 </div>
@@ -71,13 +71,13 @@
                     <ul>
                         <li>
                             <label>
-                                <input type="radio" name="radio" <?php echo $userDetails['UserDetail']['default_mode']=='Social'?"checked":""; ?> />
+                                <input type="radio" name="data[UserDetail][default_mode]" value="Social" <?php echo $userDetails['UserDetail']['default_mode'] == 'Social' ? "checked" : ""; ?> />
                                 <span class="lbl padding-8">Social (Default)</span>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="radio" <?php echo $userDetails['UserDetail']['default_mode']=='Competitive'?"checked":""; ?> />
+                                <input type="radio" name="data[UserDetail][default_mode]" value="Competitive" <?php echo $userDetails['UserDetail']['default_mode'] == 'Competitive' ? "checked" : ""; ?> />
                                 <span class="lbl padding-8">Competitive</span>
                             </label>
                         </li>
@@ -90,7 +90,7 @@
                 <div class="switch-button">
                     <h5>Publicly Viewable:</h5>
                     <div class="switch">
-                        <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" <?php echo $userDetails['UserDetail']['is_rating_public']==1?"checked":"";  ?>>
+                        <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round-flat" value="1" name="data[UserDetail][is_rating_public]" type="checkbox" <?php echo $userDetails['UserDetail']['is_rating_public'] == 1 ? "checked" : ""; ?>>
                         <label for="cmn-toggle-5"></label>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                 <div class="switch-button">
                     <h5>Publicly Viewable:</h5>
                     <div class="switch">
-                        <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" <?php echo $userDetails['UserDetail']['is_rank_public']==1?"checked":"";  ?>>
+                        <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" value="1" name="data[UserDetail][is_rank_public]" <?php echo $userDetails['UserDetail']['is_rank_public'] == 1 ? "checked" : ""; ?>>
                         <label for="cmn-toggle-6"></label>
                     </div>
                 </div>
@@ -151,14 +151,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($userDetails['User']['Match'] as $match){ ?>
-                            <tr>
-                                <td><?php echo $match['play']; ?></td>
-                                <td><?php echo $match['oponent']; ?></td>
-                                <td><?php echo $match['match_type']; ?></td>
-                                <td><?php echo $match['result']; ?></td>
-                                <td><?php echo date("m/y", strtotime($match['date_played'])); ?></td>
-                            </tr>
+                            <?php foreach ($userDetails['User']['Match'] as $match) { ?>
+                                <tr>
+                                    <td><?php echo $match['play']; ?></td>
+                                    <td><?php echo $match['oponent']; ?></td>
+                                    <td><?php echo $match['match_type']; ?></td>
+                                    <td><?php echo $match['result']; ?></td>
+                                    <td><?php echo date("m/y", strtotime($match['date_played'])); ?></td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -170,16 +170,16 @@
                 <div class="switch-button">
                     <h5>Publicly Viewable:</h5>
                     <div class="switch">
-                        <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" <?php echo $userDetails['UserDetail']['is_badge_public']==1?"checked":"";  ?>>
+                        <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round-flat" value="1" type="checkbox" name="data[UserDetail][is_badge_public]" <?php echo $userDetails['UserDetail']['is_badge_public'] == 1 ? "checked" : ""; ?>>
                         <label for="cmn-toggle-7"></label>
                     </div>
                 </div>
                 <h2>Badges</h2>
                 <div class="badges">
-                    <?php foreach($userDetails['User']['Badge'] as $badge){ ?>
-                    <div class="badge-img"><img src="<?php echo Configure::read('App.baseUrl'); ?>/uploads/<?php echo $badge['image']; ?>">
-                        <div class="img-cap"><?php echo $badge['name']; ?></div>
-                    </div>
+                    <?php foreach ($userDetails['User']['Badge'] as $badge) { ?>
+                        <div class="badge-img"><img src="<?php echo Configure::read('App.baseUrl'); ?>/uploads/<?php echo $badge['image']; ?>">
+                            <div class="img-cap"><?php echo $badge['name']; ?></div>
+                        </div>
                     <?php } ?>
                 </div>
                 <div class="show-all">
@@ -206,25 +206,25 @@
                 <div class="table-content">
                     <table class="table">
                         <thead>
-                            
+
                             <tr>
                                 <th><i class="fa fa-caret-down" aria-hidden="true"></i> Rank</th>
                                 <th><i class="fa fa-caret-down" aria-hidden="true"></i> Tribe Name</th>
                                 <th>Tribe Leader</th>
                                 <th>Date Joined</th>
                             </tr>
-                            
+
                         </thead>
                         <tbody>
-                            <?php foreach($userDetails['User']['Tribe'] as $tribe){ ?>
-                            <tr>
-                                <td><?php echo $tribe['rank']; ?></td>
-                                <td><?php echo $tribe['name']; ?></td>
-                                <td><span><?php echo $tribe['leader']; ?></span></td>
-                                <td><?php echo date("m/y", strtotime($tribe['date_joined'])); ?></td>
-                            </tr>
+                            <?php foreach ($userDetails['User']['Tribe'] as $tribe) { ?>
+                                <tr>
+                                    <td><?php echo $tribe['rank']; ?></td>
+                                    <td><?php echo $tribe['name']; ?></td>
+                                    <td><span><?php echo $tribe['leader']; ?></span></td>
+                                    <td><?php echo date("m/y", strtotime($tribe['date_joined'])); ?></td>
+                                </tr>
                             <?php } ?>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -236,27 +236,27 @@
                 <div class="pref">
                     <h5>Preferred Coach:</h5>
                     <div class="styled-select grey pull-right">
-                        <select>
-                            <option value="Kiril T." selected>Kiril T.</option>
-                            <option value="Kiril T.">Kiril T.</option>                            
+                        <select name="data[UserDetail][preferred_coach]">
+                            <option value="Kiril T." <?php echo $userDetails['UserDetail']['preferred_coach'] == 'Kiril T.' ? 'selected' : ''; ?>>Kiril T.</option>
+                            <option value="Kiril T." <?php echo $userDetails['UserDetail']['preferred_coach'] == 'Kiril T.' ? 'selected' : ''; ?>>Kiril T.</option>                            
                         </select>
                     </div>
                 </div>
                 <div class="pref">
                     <h5>Preferred Venue:</h5>
                     <div class="styled-select grey pull-right">
-                        <select>
-                            <option value="Hamptons" selected>Hamptons</option>
-                            <option value="Kiril T.">Kiril T.</option>                            
+                        <select name="data[UserDetail][preferred_venue]">
+                            <option value="Hamptons" <?php echo $userDetails['UserDetail']['preferred_venue'] == 'Hamptons' ? 'selected' : ''; ?>>Hamptons</option>
+                            <option value="Kiril T." <?php echo $userDetails['UserDetail']['preferred_venue'] == 'Kiril T.' ? 'selected' : ''; ?>>Kiril T.</option>                            
                         </select>
                     </div>
                 </div>
                 <div class="pref">
                     <h5>Preferred Court Surface:</h5>
                     <div class="styled-select grey pull-right">
-                        <select>
-                            <option value="Clay" selected>Clay</option>
-                            <option value="Kiril T.">Kiril T.</option>                            
+                        <select name="data[UserDetail][preferred_court_surface]">
+                            <option value="Clay" <?php echo $userDetails['UserDetail']['preferred_court_surface'] == 'Clay' ? 'selected' : ''; ?>>Clay</option>
+                            <option value="Kiril T." <?php echo $userDetails['UserDetail']['preferred_court_surface'] == 'Kiril T.' ? 'selected' : ''; ?>>Kiril T.</option>                            
                         </select>
                     </div>
                 </div>
@@ -268,14 +268,14 @@
                     <div class="s-btn">
                         <h5 class="pull-left">Open to Beacon Play:</h5>
                         <div class="switch pull-right">
-                            <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                            <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round-flat" value="1" type="checkbox" name="data[UserDetail][is_beaconplay]" <?php echo $userDetails['UserDetail']['is_beaconplay'] == 1 ? "checked" : ""; ?>>
                             <label for="cmn-toggle-8"></label>
                         </div>
                     </div>
                     <div class="s-btn">
                         <h5 class="pull-left">Open to Challenge:</h5>
                         <div class="switch pull-right">
-                            <input id="cmn-toggle-9" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                            <input id="cmn-toggle-9" class="cmn-toggle cmn-toggle-round-flat" value="1" type="checkbox" name="data[UserDetail][is_challangeplay]" <?php echo $userDetails['UserDetail']['is_challangeplay'] == 1 ? "checked" : ""; ?>>
                             <label for="cmn-toggle-9"></label>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
 
     </div>
 
-
+    <?php echo $this->Form->end(); ?>
 
 
 
@@ -312,6 +312,26 @@
 
         $(".closebtn").click(function () {
             $(".overlay").css("display", "none");
+        });
+        $('#UserDetailProfileForm').submit(function () {
+            var dados = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: dados,
+                success: function (data)
+                {
+                    data = JSON.parse(data);
+                    if (!data.status) {
+                        alert(data.message);
+                    } else {
+                        window.location.href = 'profile';
+                    }
+                }
+            });
+
+            return false;
         });
     });
 </script>
