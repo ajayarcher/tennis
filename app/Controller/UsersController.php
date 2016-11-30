@@ -23,19 +23,33 @@ class UsersController extends AppController {
         parent::beforeFilter();
 
         // For CakePHP 2+
-        $this->Auth->allow('login','verifyEmail','signup');
+        $this->Auth->allow('login','logout','signup');
     }
 
     public function login() {
         if ($this->request->is('post')) {
             $check = $this->User->checkLogin($this->request->data['User']['username'], $this->request->data['User']['password']);
             if (empty($check)) {
-                $this->Flash->error(__('Either username or password is wrong'));
+                $response['status'] = false;
+                $response['message'] = 'Either username or password is wrong';
             } else {
-                $this->Session->write("Auth.User", $check);
-                $this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
+                if ($check['User']['status'] == 1) {
+                    $this->Session->write("Auth.User", $check);
+                    sleep(2);
+                    $response['status'] = true;
+                    $response['data'] = $check;
+                } else {
+                    $response['status'] = false;
+                    $response['message'] = 'Your account is not activated';
+                }
             }
+            echo json_encode($response);
+            die;
         }
+    }
+
+    public function dashboard() {
+        
     }
 
     public function signup() {
@@ -62,6 +76,32 @@ class UsersController extends AppController {
         } else {
             $this->Flash->error(__('Account can not verified'));
         }
+    }
+
+    public function logout() {
+        $this->Auth->logout();
+        $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    }
+
+    public function venue() {
+        
+    }
+
+    public function searchVenues() {
+        $term = $this->params->query['term'];
+        $this->loadModel('Venue');
+        $venues = $this->Venue->find('list', array('conditions' => array(
+                "Venue.name Like" => "$term%"
+        )));
+        echo json_encode($venues);
+        die;
+    }
+
+    public function profile() {
+        $this->User->UserDetail->recursive = 2;
+        $userDetails = $this->User->UserDetail->findByUserId($this->Session->read("Auth.User")['User']['id']);
+        //pr($userDetails);die;
+        $this->set('userDetails', $userDetails);
     }
 
 }

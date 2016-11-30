@@ -54,7 +54,7 @@
                 <div class="input-group date" data-date="05/12/1991" data-date-format="dd/mm/yyyy" data-provide="datepicker">
                     <?php
                     echo $this->Form->input(
-                            'dob', array('label' => false, 'class' => 'form-control datepicker down-arrow', 'value' => '05/12/1991')
+                            'dob', array('label' => false, 'type' => 'text', 'class' => 'form-control datepicker down-arrow', 'value' => '05/12/1991')
                     );
                     ?>
                 </div>
@@ -62,19 +62,22 @@
             </div>
         </div>
         <div class="border"></div>
-
-        <?php
-        echo $this->Form->input(
-                'membership', array('label' => 'Membership ID', 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'placeholder' => 'Automatically generated')
-        );
-        ?>
-        <div class="border"></div>
-
-        <?php
-        echo $this->Form->input(
-                'email', array('label' => 'Email', 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'type' => 'email', 'placeholder' => 'e.g: serena.williams@gmail.com')
-        );
-        ?>
+        <div class="form-group position">
+            <div class="switch-button">
+                <h5>Publicity Viewable:</h5>
+                <div class="switch">
+                    <?php
+                    echo $this->Form->checkbox('agree', array('hiddenField' => false, 'class' => 'cmn-toggle cmn-toggle-round-flat', 'id' => 'cmn-toggle-4'));
+                    ?>
+                    <label for="cmn-toggle-4"></label>
+                </div>
+            </div>
+            <?php
+            echo $this->Form->input(
+                    'email', array('label' => 'Email', 'div' => false, 'class' => 'form-control', 'type' => 'email', 'placeholder' => 'e.g: serena.williams@gmail.com')
+            );
+            ?>
+        </div>
         <div class="border"></div>
 
         <?php
@@ -83,7 +86,12 @@
         );
         ?>
         <div class="border"></div>
-
+        <?php
+        echo $this->Form->input(
+                'postal_code', array('label' => 'Zip/Postal Code', 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'placeholder' => 'e.g: 302012')
+        );
+        ?>
+        <div class="border"></div>
         <div class="form-group">
             <label for="region">Region</label>
             <div class="styled-select grey">
@@ -97,18 +105,22 @@
         <div class="border"></div>
 
         <div class="form-group">
-            <label for="rating">Do you have a certified rating?</label>     
+            <label for="rating">Do you have a USTA/ITN/UTR rating?</label>     
             <div class="rate" data-toggle="collapse" data-target="#yes"><strong>Yes</strong></div>
             <div id="yes" class="collapse">
                 <div class="yes-item">
                     <ul>
                         <li>NTPR ID:</li>
-                        <li><span>12345</span></li>
-                        <li style="width:44%">
+                        <li><?php
+                            echo $this->Form->input(
+                                    'ntrpid', array('label' => false, 'div' => false, 'class' => 'form-control', 'placeholder' => '12345')
+                            );
+                            ?></li>
+                        <li style="width:38%">
                             <div class="input-group spinner" data-trigger="spinner">
                                 <?php
                                 echo $this->Form->input(
-                                        'ntpr_id', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
+                                        'ntrp_level', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
                                     , 'values' => '6.0', 'data-rule' => 'quantity', 'type' => 'text')
                                 );
                                 ?>
@@ -122,12 +134,16 @@
                     <div class="border1"></div>
                     <ul>
                         <li>ITN ID:</li>
-                        <li><span>12345</span></li>
-                        <li style="width:44%">
+                        <li><?php
+                            echo $this->Form->input(
+                                    'itnid', array('label' => false, 'div' => false, 'class' => 'form-control', 'placeholder' => '12345')
+                            );
+                            ?></li>
+                        <li style="width:38%">
                             <div class="input-group spinner" data-trigger="spinner">
                                 <?php
                                 echo $this->Form->input(
-                                        'itn_id', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
+                                        'itn_level', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
                                     , 'values' => '3', 'data-rule' => 'quantity', 'type' => 'text')
                                 );
                                 ?>
@@ -141,12 +157,16 @@
                     <div class="border1"></div>
                     <ul>
                         <li>UTR ID:</li>
-                        <li><span>12345</span></li>
-                        <li style="width:44%">
+                        <li><?php
+                            echo $this->Form->input(
+                                    'utrid', array('label' => false, 'div' => false, 'class' => 'form-control', 'placeholder' => '12345')
+                            );
+                            ?></li>
+                        <li style="width:38%">
                             <div class="input-group spinner" data-trigger="spinner">
                                 <?php
                                 echo $this->Form->input(
-                                        'utr_id', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
+                                        'utr_level', array('label' => false, 'div' => false, 'class' => 'form-control text-center'
                                     , 'values' => '13', 'data-rule' => 'quantity', 'type' => 'text')
                                 );
                                 ?>
@@ -185,7 +205,45 @@
 
         </div>
         <div class="border"></div>
+        <div class="form-group">
+            <label>Set Default Mode</label>
+            <div class="radio-button">
+                <ul>
+                    <li>
+                        <label>
+                            <input type="radio" name="data[UserDetail][default_mode]" value="Social" />
+                            <span class="lbl padding-8">Social</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="data[UserDetail][default_mode]" value="Competitive" />
+                            <span class="lbl padding-8">Competitive</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border"></div>
+        <div class="form-group block">
+            <label>MatchPlay Options</label>
+            <div class="s-btn">
+                <h4 class="pull-left">Open to Beacon Play</h4>
+                <div class="switch pull-right">
+                    <?php echo $this->Form->checkbox('is_beaconplay', array('id'=>'cmn-toggle-5','hiddenField' => false,'class'=>'cmn-toggle cmn-toggle-round-flat')); ?>
+                    <label for="cmn-toggle-5"></label>
+                </div>
+            </div>
+            <div class="s-btn">
+                <h4 class="pull-left">Open to Challange Play</h4>
+                <div class="switch pull-right">
+                    <?php echo $this->Form->checkbox('is_challangeplay', array('id'=>'cmn-toggle-6','hiddenField' => false,'class'=>'cmn-toggle cmn-toggle-round-flat')); ?>
+                    <label for="cmn-toggle-6"></label>
+                </div>
+            </div>
 
+        </div>
+        <div class="border"></div>
         <?php
         echo $this->Form->input(
                 'User.username', array('label' => 'Username', 'div' => array('class' => 'form-group'), 'class' => 'form-control'
@@ -230,7 +288,7 @@
         <div class="form-group">
             <div class="btn-form width-50 marg-top-25">
                 <?php echo $this->Form->button('Register', array('class' => 'btn btn-default', 'type' => 'submit')); ?>
-                <?php echo $this->Form->button('Cancel', array('class' => 'btn btn-default', 'onclick'=>'window.history.back()', 'type' => 'button')); ?>
+                <?php echo $this->Form->button('Cancel', array('class' => 'btn btn-default', 'onclick' => 'window.history.back()', 'type' => 'button')); ?>
             </div></div>
         <?php echo $this->Form->end(); ?>
 

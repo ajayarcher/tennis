@@ -22,9 +22,11 @@
 
     </div>
 
-    <?php echo $this->Session->flash(); ?>
+
 
     <div class="login-form">
+        <div class="error hide"></div>
+        <div class="success hide"></div>
         <div class="container-fluid ">
             <?php echo $this->Form->create('User'); ?>
             <div class="form-group">
@@ -57,8 +59,8 @@
 
 
             <div class="btn-form width-50 marg-top-25">
-                <?php echo $this->Form->button('Sign Up',array('class'=>'btn btn-default', 'type'=>'button', 'onclick'=>'goToLogin()')); ?>
-                <?php echo $this->Form->button('Login',array('class'=>'btn btn-default')); ?>
+                <?php echo $this->Form->button('Sign Up', array('class' => 'btn btn-default', 'type' => 'button', 'onclick' => 'goToLogin()')); ?>
+                <?php echo $this->Form->button('Login', array('class' => 'btn btn-default')); ?>
             </div>
             <?php echo $this->Form->end(); ?>
 
@@ -71,7 +73,35 @@
 
 </div>
 <script>
-    function goToLogin(){
+    function goToLogin() {
         window.location.href = 'signup';
     }
+
+    $(document).ready(function () {
+        $('#UserLoginForm').submit(function () {
+            var dados = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: dados,
+                success: function (data)
+                {
+                    data = JSON.parse(data);
+                    if(!data.status){
+                        $(".error").removeClass("hide").addClass("show");
+                        $(".error").text(data.message);
+                        $(".success").removeClass("show").addClass("hide");
+                    }else{
+                        $(".success").removeClass("hide").addClass("show");
+                        $(".success").text("Login success");
+                        $(".error").removeClass("show").addClass("hide");
+                        window.location.href = 'dashboard';
+                    }
+                }
+            });
+
+            return false;
+        });
+    });
 </script>

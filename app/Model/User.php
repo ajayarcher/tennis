@@ -83,6 +83,40 @@ class User extends AppModel {
             'order' => ''
         )
     );
+    
+    public $hasOne = array(
+        'UserDetail' => array(
+            'className' => 'UserDetail',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+    
+    public $hasMany = array(
+        'Match' => array(
+            'className' => 'Match',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+        'Badge' => array(
+            'className' => 'Badge',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+        'Tribe' => array(
+            'className' => 'Tribe',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
 
     // check user login rest api
     public function checkLogin($username, $password) {

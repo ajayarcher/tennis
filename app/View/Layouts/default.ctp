@@ -24,17 +24,21 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
         echo $this->Html->css('responsive');
         echo $this->Html->css('style');
+        echo $this->Html->css('common');
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('datepicker');
         echo $this->Html->css('font-awesome.min');
+        echo $this->Html->css('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
 
         echo $this->Html->script('jquery.min');
         echo $this->Html->script('bootstrap.min');
+        echo $this->Html->script('common');
         echo $this->Html->script('jquery.spinner.min');
         echo $this->Html->script('bootstrap-datepicker');
+        echo $this->Html->script('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
         echo $this->fetch('script');
         ?>
     </head>

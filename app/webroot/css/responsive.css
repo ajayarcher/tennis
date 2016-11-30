@@ -18,4 +18,27 @@
 .datepicker::after {
   left: 90px !important;
 }
+    
+.reg-success {
+  padding: 20px !important;
+  width: 90% !important;
+}
+
+
+.img-cap {
+  font-size: 10px !important;
+  width: 93%;
+}
+
+}
+
+
+@media screen and (min-width:421px) and (max-width:560) {}
+    
+    
+    
+    
+    
+    
+    
 }
