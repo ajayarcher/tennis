@@ -107,6 +107,7 @@ class UsersController extends AppController {
             $response['status'] = false;
             $response['message'] = 'Can not found user details';
         }
+        echo json_encode($response);die;
     }
 
 }
