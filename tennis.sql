@@ -2,8 +2,13 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
+<<<<<<< HEAD
 -- Host: localhost
 -- Generation Time: Dec 13, 2016 at 12:47 PM
+=======
+-- Host: 127.0.0.1
+-- Generation Time: Nov 30, 2016 at 01:42 PM
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -29,12 +34,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `badges` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+<<<<<<< HEAD
   `label` varchar(50) NOT NULL,
+=======
+  `name` varchar(50) NOT NULL,
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
   `image` varchar(50) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 -- --------------------------------------------------------
 
 --
@@ -100,6 +110,16 @@ CREATE TABLE `coaches` (
 
 INSERT INTO `coaches` (`id`, `club_id`, `name`, `summary`, `detail`, `dob`, `qualification`, `position`, `created`, `modified`) VALUES
 (1, 1, 'Naing', 'Junior Tennis, Adult Private Lessons and Group Tennis Lessons, Sparring', 'Junior Tennis, Adult Private Lessons and Group Tennis Lessons, Sparring. Former Davis Cup Player and ITF International ', '1981-07-23', 'ITF International Tennis Coaching Program Certificate', 'Assistant Coach', '2016-12-13 00:00:00', '2016-12-13 00:00:00');
+=======
+--
+-- Dumping data for table `badges`
+--
+
+INSERT INTO `badges` (`id`, `user_id`, `name`, `image`, `created`, `modified`) VALUES
+(1, 1, 'New Recruit', 'badge.png', '2016-11-30 05:12:11', '2016-11-30 05:11:11'),
+(2, 1, 'Tier Veteran', 'badge (2).png', '2016-11-30 05:12:11', '2016-11-30 05:11:11'),
+(3, 1, 'Tribe Leader', 'badge (3).png', '2016-11-30 05:12:11', '2016-11-30 05:11:11');
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 
 -- --------------------------------------------------------
 
@@ -368,6 +388,7 @@ INSERT INTO `countries` (`id`, `sortname`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `court_surfaces`
 --
 
@@ -405,6 +426,8 @@ CREATE TABLE `devices` (
 -- --------------------------------------------------------
 
 --
+=======
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 -- Table structure for table `email_templates`
 --
 
@@ -431,6 +454,7 @@ INSERT INTO `email_templates` (`id`, `slug`, `from_name`, `from_email`, `subject
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `friends`
 --
 
@@ -454,12 +478,24 @@ CREATE TABLE `match_history` (
   `play` varchar(50) NOT NULL,
   `opponent` varchar(50) NOT NULL,
   `match_type` tinyint(1) NOT NULL COMMENT '0=single, 1=tribal',
+=======
+-- Table structure for table `matches`
+--
+
+CREATE TABLE `matches` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `play` varchar(50) NOT NULL,
+  `oponent` varchar(50) NOT NULL,
+  `match_type` varchar(50) NOT NULL,
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
   `result` varchar(50) NOT NULL,
   `date_played` date NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 -- --------------------------------------------------------
 
 --
@@ -513,6 +549,18 @@ CREATE TABLE `players` (
 
 INSERT INTO `players` (`id`, `user_id`, `name`, `email`, `profile_picture`, `current_points`, `reliability`, `is_public`, `mode`, `coach_rating`, `ntrp`, `utr`, `itn`, `is_rating_public`, `global_ranking`, `band_ranking`, `tribe1_ranking`, `tribe2_ranking`, `is_ranking_public`, `forehand_trait`, `backhand_trait`, `slice_trait`, `netgame_trait`, `serve_trait`, `pointplay_trait`, `is_trait_public`, `is_badge_public`, `is_friend_public`, `preferred_coach_id`, `preferred_venue_id`, `preferred_court_surface_id`, `doubles_partner`, `is_open_beaconplay`, `is_open_challangeplay`, `self_rating`, `self_rating_description`, `created`, `modified`) VALUES
 (1, 1, 'naveen agarwal', 'agarwalnaveen22@gmail.com', '', 5000, 40, 1, 0, 'test', 'test', 'test', 'test', 1, 'test', 'test', 'test', 'test', 1, 'test', 'test', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'none', 1, 1, 5, 'test', '2016-12-13 04:07:10', '2016-12-13 05:10:12');
+=======
+--
+-- Dumping data for table `matches`
+--
+
+INSERT INTO `matches` (`id`, `user_id`, `play`, `oponent`, `match_type`, `result`, `date_played`, `created`, `modified`) VALUES
+(1, 1, 'Scheduled', 'Micheal Adams', 'Singles', 'Won', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(2, 1, 'Scheduled', 'Micheal Adams', 'Singles', 'Won', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(3, 1, 'Scheduled', 'Micheal Adams', 'Singles', 'Won', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(4, 1, 'Scheduled', 'Micheal Adams', 'Singles', 'Won', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(5, 1, 'Scheduled', 'Micheal Adams', 'Singles', 'Won', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12');
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 
 -- --------------------------------------------------------
 
@@ -532,8 +580,12 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `created`, `modified`) VALUES
+<<<<<<< HEAD
 (1, 'player', '2016-11-29 04:10:10', '2016-11-29 04:10:10'),
 (2, 'coach', '2016-12-13 00:00:00', '2016-12-13 00:00:00');
+=======
+(1, 'user', '2016-11-29 04:10:10', '2016-11-29 04:10:10');
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 
 -- --------------------------------------------------------
 
@@ -545,14 +597,33 @@ CREATE TABLE `tribes` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `rank` int(11) NOT NULL,
+<<<<<<< HEAD
   `name` varchar(100) NOT NULL,
   `leader` varchar(100) NOT NULL,
   `date_joined` date NOT NULL,
   `type` tinyint(1) NOT NULL COMMENT '0=national, 1=global',
+=======
+  `name` varchar(50) NOT NULL,
+  `leader` varchar(50) NOT NULL,
+  `date_joined` date NOT NULL,
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+=======
+--
+-- Dumping data for table `tribes`
+--
+
+INSERT INTO `tribes` (`id`, `user_id`, `rank`, `name`, `leader`, `date_joined`, `created`, `modified`) VALUES
+(1, 1, 1, 'Micheal Adams', 'Roggers Fedrer', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(2, 1, 4, 'Micheal Adams', 'Roggers Fedrer', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(3, 1, 2, 'Micheal Adams', 'Roggers Fedrer', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12'),
+(4, 1, 3, 'Micheal Adams', 'Roggers Fedrer', '2016-11-30', '2016-11-30 06:15:15', '2016-11-30 05:13:12');
+
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 -- --------------------------------------------------------
 
 --
@@ -577,6 +648,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `verification_code`, `status`, `created`, `modified`) VALUES
 (1, 1, 'agarwalnaveen22', 'b72ddc8052f955461348545d21f85faa3b53d329', '', 1, '2016-11-29 05:13:16', '2016-11-29 06:16:17');
 
+<<<<<<< HEAD
 --
 -- Indexes for dumped tables
 --
@@ -645,6 +717,106 @@ ALTER TABLE `match_history`
 -- Indexes for table `players`
 --
 ALTER TABLE `players`
+=======
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_detail`
+--
+
+CREATE TABLE `user_detail` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `suffix` varchar(5) NOT NULL,
+  `dob` date NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `postal_code` varchar(15) NOT NULL,
+  `is_rating_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=no, 1=yes',
+  `ntrp_rating` varchar(10) DEFAULT NULL,
+  `itn_rating` varchar(10) DEFAULT NULL,
+  `utr_rating` varchar(10) DEFAULT NULL,
+  `coach_rating` varchar(10) NOT NULL,
+  `self_rating` float NOT NULL,
+  `default_mode` enum('Social','Competitive') NOT NULL,
+  `global_rank` int(11) NOT NULL,
+  `band_rank` int(11) NOT NULL,
+  `tribe1_rank` int(11) NOT NULL,
+  `tribe2_rank` int(11) NOT NULL,
+  `is_rank_public` tinyint(1) NOT NULL DEFAULT '0',
+  `is_beaconplay` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=no, 1=yes',
+  `is_challangeplay` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=no, 1=yes',
+  `is_newsletter` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=no, 1=yes',
+  `profile_picture` varchar(255) NOT NULL,
+  `sport_level_name` varchar(50) NOT NULL,
+  `point` varchar(5) NOT NULL,
+  `reliability` float NOT NULL,
+  `is_sport_level_public` tinyint(1) NOT NULL DEFAULT '0',
+  `is_badge_public` tinyint(1) NOT NULL,
+  `preferred_coach` varchar(50) NOT NULL,
+  `preferred_venue` varchar(50) NOT NULL,
+  `preferred_court_surface` varchar(50) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_detail`
+--
+
+INSERT INTO `user_detail` (`id`, `user_id`, `first_name`, `surname`, `suffix`, `dob`, `email`, `country_id`, `postal_code`, `is_rating_public`, `ntrp_rating`, `itn_rating`, `utr_rating`, `coach_rating`, `self_rating`, `default_mode`, `global_rank`, `band_rank`, `tribe1_rank`, `tribe2_rank`, `is_rank_public`, `is_beaconplay`, `is_challangeplay`, `is_newsletter`, `profile_picture`, `sport_level_name`, `point`, `reliability`, `is_sport_level_public`, `is_badge_public`, `preferred_coach`, `preferred_venue`, `preferred_court_surface`, `created`, `modified`) VALUES
+(1, 1, 'naveen', 'agarwal', 'Mr.', '1987-12-09', 'agarwalnaveen22@gmail.com', 101, '302012', 1, '123', '456', '789', '011', 0, 'Social', 5, 4, 6, 8, 1, 0, 1, 1, 'profile-photo_friendly.jpg', 'Tennis', '6300', 40, 1, 0, 'Kiril T.', 'Hamptons', 'Kiril T.', '2016-11-30 06:14:14', '2016-11-30 12:39:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `venues`
+--
+
+CREATE TABLE `venues` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` text NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `venues`
+--
+
+INSERT INTO `venues` (`id`, `name`, `address`, `created`, `modified`) VALUES
+(1, 'Selenagar', '114, Selenagar, Malaysia', '2016-11-29 06:14:15', '2016-11-29 05:13:12');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `badges`
+--
+ALTER TABLE `badges`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_templates`
+--
+ALTER TABLE `email_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `matches`
+--
+ALTER TABLE `matches`
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
   ADD PRIMARY KEY (`id`);
 
 --
@@ -666,6 +838,7 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -689,12 +862,37 @@ ALTER TABLE `club_operating_hours`
 --
 ALTER TABLE `coaches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+-- Indexes for table `user_detail`
+--
+ALTER TABLE `user_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `venues`
+--
+ALTER TABLE `venues`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+ALTER TABLE `venues` ADD FULLTEXT KEY `name_2` (`name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `badges`
+--
+ALTER TABLE `badges`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `court_surfaces`
 --
 ALTER TABLE `court_surfaces`
@@ -705,11 +903,14 @@ ALTER TABLE `court_surfaces`
 ALTER TABLE `devices`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+=======
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 -- AUTO_INCREMENT for table `email_templates`
 --
 ALTER TABLE `email_templates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
@@ -724,21 +925,48 @@ ALTER TABLE `match_history`
 --
 ALTER TABLE `players`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+-- AUTO_INCREMENT for table `matches`
+--
+ALTER TABLE `matches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 --
 -- AUTO_INCREMENT for table `tribes`
 --
 ALTER TABLE `tribes`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+<<<<<<< HEAD
+=======
+--
+-- AUTO_INCREMENT for table `user_detail`
+--
+ALTER TABLE `user_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `venues`
+--
+ALTER TABLE `venues`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> cb631cc696a7a6f705c160b145a60dc7f460e60b
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
