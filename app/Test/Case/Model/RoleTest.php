@@ -1,10 +1,10 @@
 <?php
-App::uses('Badge', 'Model');
+App::uses('Role', 'Model');
 
 /**
- * Badge Test Case
+ * Role Test Case
  */
-class BadgeTest extends CakeTestCase {
+class RoleTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -12,19 +12,14 @@ class BadgeTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.badge',
-		'app.user',
 		'app.role',
+		'app.user',
+		'app.badge',
 		'app.club',
-		'app.club_operating_hour',
-		'app.coach',
 		'app.device',
 		'app.friend',
 		'app.match_history',
 		'app.player',
-		'app.preferred_coach',
-		'app.preferred_venue',
-		'app.preferred_court_surface',
 		'app.tribe'
 	);
 
@@ -35,7 +30,7 @@ class BadgeTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Badge = ClassRegistry::init('Badge');
+		$this->Role = ClassRegistry::init('Role');
 	}
 
 /**
@@ -44,7 +39,7 @@ class BadgeTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Badge);
+		unset($this->Role);
 
 		parent::tearDown();
 	}

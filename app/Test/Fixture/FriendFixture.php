@@ -1,8 +1,8 @@
 <?php
 /**
- * Badge Fixture
+ * Friend Fixture
  */
-class BadgeFixture extends CakeTestFixture {
+class FriendFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -12,8 +12,7 @@ class BadgeFixture extends CakeTestFixture {
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
-		'label' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'image' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'friend_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'indexes' => array(
@@ -31,10 +30,9 @@ class BadgeFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'user_id' => 1,
-			'label' => 'Lorem ipsum dolor sit amet',
-			'image' => 'Lorem ipsum dolor sit amet',
-			'created' => '2016-12-13 11:10:56',
-			'modified' => '2016-12-13 11:10:56'
+			'friend_id' => 1,
+			'created' => '2016-12-13 11:09:37',
+			'modified' => '2016-12-13 11:09:37'
 		),
 	);
 
