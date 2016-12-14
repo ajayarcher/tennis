@@ -130,5 +130,15 @@ class User extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	// check user login rest api
+    public function checkLogin($email, $password) {
+        $password = AuthComponent::password($password);
+        $user = $this->find('first', array('conditions' => array(
+                'User.email' => $email,
+                'User.password' => $password
+        )));
+        return $user;
+    }
 
 }
