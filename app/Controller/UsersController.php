@@ -23,7 +23,7 @@ class UsersController extends AppController {
         parent::beforeFilter();
         $this->autoRender = false;
         // For CakePHP 2+
-        //$this->Auth->allow('profile');
+        $this->Auth->allow();
     }
 
     public function login() {
