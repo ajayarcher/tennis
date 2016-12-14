@@ -21,7 +21,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-
+        $this->autoRender = false;
         // For CakePHP 2+
         //$this->Auth->allow('profile');
     }
@@ -98,6 +98,7 @@ class UsersController extends AppController {
           echo json_encode($response);
           die;
           } */
+        //pr($this->request->data);die;
         $this->User->Player->recursive = 2;
         $userDetails = $this->User->Player->findByUserId($this->request->data['user_id']);
         if (!empty($userDetails)) {
@@ -107,7 +108,20 @@ class UsersController extends AppController {
             $response['status'] = false;
             $response['message'] = 'Can not found user details';
         }
-        echo json_encode($response);die;
+        echo json_encode($response);
+    }
+
+    public function venues() {
+        $venues = $this->User->Club->find('all');
+        if (!empty($venues)) {
+            $response['status'] = true;
+            $response['data'] = $venues;
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Can not found venues';
+        }
+        //pr($response);die;
+        echo json_encode($response);
     }
 
 }
