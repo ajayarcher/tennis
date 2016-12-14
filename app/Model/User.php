@@ -135,7 +135,7 @@ class User extends AppModel {
     public function checkLogin($email, $password) {
         $password = AuthComponent::password($password);
         $user = $this->find('first', array('conditions' => array(
-                'User.email' => $email,
+                'User.username' => $email,
                 'User.password' => $password
         )));
         return $user;
