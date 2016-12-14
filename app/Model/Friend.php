@@ -25,8 +25,8 @@ class Friend extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Friend' => array(
-			'className' => 'Friend',
+		'User' => array(
+			'className' => 'User',
 			'foreignKey' => 'friend_id',
 			'conditions' => '',
 			'fields' => '',

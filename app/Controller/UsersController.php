@@ -123,5 +123,32 @@ class UsersController extends AppController {
         //pr($response);die;
         echo json_encode($response);
     }
+    
+    public function friends(){
+        $userId = $this->request->data['user_id'];
+        $friends = $this->User->Friend->findAllByUserId($userId);
+        if (!empty($friends)) {
+            $response['status'] = true;
+            $response['data'] = $friends;
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Can not found friends';
+        }
+        //pr($response);die;
+        echo json_encode($response);
+    }
+    
+    public function coachesByClubId(){
+        $coaches = $this->User->Club->Coach->findAllByClubId($this->request->data['club_id']);
+        if (!empty($coaches)) {
+            $response['status'] = true;
+            $response['data'] = $coaches;
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Can not found coaches';
+        }
+        //pr($response);die;
+        echo json_encode($response);
+    }
 
 }
