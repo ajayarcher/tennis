@@ -28,14 +28,12 @@ class UsersController extends AppController {
 
     public function login() {
         if ($this->request->is('post')) {
-            $check = $this->User->checkLogin($this->request->data['User']['username'], $this->request->data['User']['password']);
+            $check = $this->User->checkLogin($this->request->data['email'], $this->request->data['password']);
             if (empty($check)) {
                 $response['status'] = false;
-                $response['message'] = 'Either username or password is wrong';
+                $response['message'] = 'Either email or password is wrong';
             } else {
                 if ($check['User']['status'] == 1) {
-                    $this->Session->write("Auth.User", $check);
-                    sleep(2);
                     $response['status'] = true;
                     $response['data'] = $check;
                 } else {
