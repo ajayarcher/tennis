@@ -33,6 +33,13 @@ class Player extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+                'Country' => array(
+			'className' => 'Country',
+			'foreignKey' => 'country_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'PreferredCoach' => array(
 			'className' => 'Coach',
 			'foreignKey' => 'preferred_coach_id',

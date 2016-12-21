@@ -123,8 +123,8 @@ class UsersController extends AppController {
         //pr($response);die;
         echo json_encode($response);
     }
-    
-    public function friends(){
+
+    public function friends() {
         $userId = $this->request->data['user_id'];
         $friends = $this->User->Friend->findAllByUserId($userId);
         if (!empty($friends)) {
@@ -137,8 +137,8 @@ class UsersController extends AppController {
         //pr($response);die;
         echo json_encode($response);
     }
-    
-    public function coachesByClubId(){
+
+    public function coachesByClubId() {
         $coaches = $this->User->Club->Coach->findAllByClubId($this->request->data['club_id']);
         if (!empty($coaches)) {
             $response['status'] = true;
@@ -149,6 +149,36 @@ class UsersController extends AppController {
         }
         //pr($response);die;
         echo json_encode($response);
+    }
+
+    public function registration() {
+        if ($this->request->is('post')) {
+            $roles = $this->User->Role->findByName("player");
+            if (!empty($roles)) {
+                $user['User']['email'] = $this->request->data['email'];
+                $user['User']['password'] = AuthComponent::password($this->request->data['password']);
+                $user['User']['role_id'] = $roles['Role']['id'];
+                if ($this->User->save($user)) {
+                    $player['Player'] = $this->request->data;
+                    $userId = $this->User->getInsertID();
+                    $player['Player']['user_id'] = $userId;
+                    if ($this->User->Player->save($player)) {
+                        $response['status'] = true;
+                    } else {
+                        $this->User->delete($userId);
+                        $response['status'] = false;
+                        $response['message'] = 'Can not save user details';
+                    }
+                } else {
+                    $response['status'] = false;
+                    $response['message'] = 'Can not save user credential';
+                }
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'Can not found role';
+            }
+            echo json_encode($response);
+        }
     }
 
 }
