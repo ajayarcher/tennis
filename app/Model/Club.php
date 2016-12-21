@@ -53,8 +53,21 @@ class Club extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Coach' => array(
-			'className' => 'Coach',
+		'CoachRelation' => array(
+			'className' => 'CoachRelation',
+			'foreignKey' => 'club_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ClubBooking' => array(
+			'className' => 'ClubBooking',
 			'foreignKey' => 'club_id',
 			'dependent' => false,
 			'conditions' => '',
