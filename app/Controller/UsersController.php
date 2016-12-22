@@ -202,13 +202,17 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $keyword = @$this->request->data['keyword'];
             if ($keyword != '') {
-                $coaches = $this->User->Coach->find('all', array('conditions' => array('OR' => array(
-                            'Coach.name like ' => $keyword . '%',
-                            'Coach.summary like ' => $keyword . '%',
-                            'Coach.detail like ' => $keyword . '%',
-                            'Coach.qualification like ' => $keyword . '%'
-                        )
-                )));
+                if ($keyword == '*') {
+                    $coaches = $this->User->Coach->find('all');
+                } else {
+                    $coaches = $this->User->Coach->find('all', array('conditions' => array('OR' => array(
+                                'Coach.name like ' => $keyword . '%',
+                                'Coach.summary like ' => $keyword . '%',
+                                'Coach.detail like ' => $keyword . '%',
+                                'Coach.qualification like ' => $keyword . '%'
+                            )
+                    )));
+                }
                 if (!empty($coaches)) {
                     $response['status'] = true;
                     $response['data'] = $coaches;
@@ -363,9 +367,9 @@ class UsersController extends AppController {
                     $book['ClubBooking']['book_date'] = $date;
                     $book['ClubBooking']['book_start_time'] = $start_time;
                     $book['ClubBooking']['book_end_time'] = $end_time;
-                    if($this->User->Club->ClubBooking->save($book)){
+                    if ($this->User->Club->ClubBooking->save($book)) {
                         $response['status'] = true;
-                    }else{
+                    } else {
                         $response['status'] = false;
                         $response['message'] = "Can not book";
                     }
