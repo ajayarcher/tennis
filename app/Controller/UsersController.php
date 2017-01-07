@@ -397,4 +397,42 @@ class UsersController extends AppController {
         echo json_encode($response);
     }
 
+    public function insertUpdateClub() {
+        if ($this->request->is('post')) {
+            if (isset($this->request->data['id']) && $this->request->data['id'] != '') {
+                $this->User->Club->id = $this->request->data['id'];
+            }
+            if ($this->User->Club->save($this->request->data)) {
+                if (isset($this->request->data['id']) && $this->request->data['id'] != '') {
+                    $clubId = $this->request->data['id'];
+                } else {
+                    $clubId = $this->User->Club->getInsertID();
+                }
+                $alreadyHours = $this->User->Club->ClubOperatingHour->findAllByClubId($clubId);
+                if(!empty($alreadyHours)){
+                    $this->User->Club->ClubOperatingHour->deleteAll(array("ClubOperatingHour.club_id"=>$clubId));
+                }
+                if(!empty($this->request->data['operating_hours'])){
+                    foreach($this->request->data['operating_hours'] as $hours){
+                        $hour['club_id'] = $clubId;
+                        $hour['day'] = $hours['day'];
+                        $hour['start_time'] = date("H:i:s", strtotime($hours['start_time']));
+                        $hour['end_time'] = date("H:i:s", strtotime($hours['start_time']));
+                        $this->User->Club->ClubOperatingHour->create();
+                        $this->User->Club->ClubOperatingHour->save($hour);
+                    }
+                }
+                $response['status'] = true;
+            } else {
+                $response['status'] = false;
+                $response['message'] = "Can not save club details";
+            }
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Invalid request';
+        }
+        echo json_encode($response);
+    }
+    
 }
+    
