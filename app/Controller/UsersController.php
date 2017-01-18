@@ -434,5 +434,54 @@ class UsersController extends AppController {
         echo json_encode($response);
     }
     
+    public function insertUpdateCoach() {
+        if ($this->request->is('post')) {
+            if (isset($this->request->data['id']) && $this->request->data['id'] != '') {
+                $this->User->Coach->id = $this->request->data['id'];
+            }
+            if ($this->User->Coach->save($this->request->data)) {
+                if (isset($this->request->data['id']) && $this->request->data['id'] != '') {
+                    $coachId = $this->request->data['id'];
+                } else {
+                    $coachId = $this->User->Coach->getInsertID();
+                }
+                $alreadyHours = $this->User->Coach->CoachAvailableHour->findAllByCoachId($coachId);
+                if(!empty($alreadyHours)){
+                    $this->User->Coach->CoachAvailableHour->deleteAll(array("CoachAvailableHour.coach_id"=>$coachId));
+                }
+                if(!empty($this->request->data['available_hours'])){
+                    foreach($this->request->data['available_hours'] as $hours){
+                        $hour['coach_id'] = $coachId;
+                        $hour['day'] = $hours['day'];
+                        $hour['start_time'] = date("H:i:s", strtotime($hours['start_time']));
+                        $hour['end_time'] = date("H:i:s", strtotime($hours['start_time']));
+                        $this->User->Coach->CoachAvailableHour->create();
+                        $this->User->Coach->CoachAvailableHour->save($hour);
+                    }
+                }
+                $alreadyRelations = $this->User->Coach->CoachRelation->findAllByCoachId($coachId);
+                if(!empty($alreadyRelations)){
+                    $this->User->Coach->CoachRelation->deleteAll(array("CoachRelation.coach_id"=>$coachId));
+                }
+                if(!empty($this->request->data['clubs'])){
+                    foreach($this->request->data['clubs'] as $clubs){
+                        $club['coach_id'] = $coachId;
+                        $club['club_id'] = $clubs['club_id'];
+                        $this->User->Coach->CoachRelation->create();
+                        $this->User->Coach->CoachRelation->save($club);
+                    }
+                }
+                $response['status'] = true;
+            } else {
+                $response['status'] = false;
+                $response['message'] = "Can not save club details";
+            }
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Invalid request';
+        }
+        echo json_encode($response);
+    }
+    
 }
     

@@ -38,6 +38,13 @@ class Coach extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'CoachAvailableHour' => array(
+            'className' => 'CoachAvailableHour',
+            'foreignKey' => 'coach_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
         )
     );
 
